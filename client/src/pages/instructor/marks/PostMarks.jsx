@@ -7,7 +7,7 @@ import { toastErrorObject } from '../../../utility/toasts';
 import { courseEndpoints } from '../../../api/endpoints/courseEndpoints';
 import LoadingSpinner from '../../../components/spinners/LoadingSpinner';
 import SelectField from '../../../components/inputs/SelectField';
-import UpdateMarks from "./UpdateMarks";
+// import UpdateMarks from "./UpdateMarks";
 import MarkMarks from "./MarkMarks";
 
 export default function PostMarks() {
@@ -18,7 +18,6 @@ export default function PostMarks() {
 
   const [academics, setAcademics] = useState([]);
   const [studentsMarks, setStudentsMarks] = useState([]);
-  const [selectedMarks, setSelectedMarks] = useState(null);
   const [temporarySelection, setTemporarySelection] = useState({
     examType: "",
     activityNumber: "",
@@ -79,20 +78,8 @@ export default function PostMarks() {
       }
     }
     fetchStudents();
-    if (temporarySelection.examType && temporarySelection.activityNumber && temporarySelection.course) {
-      let duplicateObject = academics.filter(
-        (marks) =>
-        marks?.examType === temporarySelection.examType &&
-        marks?.activityNumber === temporarySelection.activityNumber &&
-        marks?.course._id === temporarySelection.course
-      )[0];
-      setSelectedMarks(duplicateObject);
-    } else {
-      setSelectedMarks(null);
-    }
-    // eslint-disable-next-line
-  }, [instructorId, selectedMarks, temporarySelection]);
-console.log("check", selectedMarks)
+  }, [instructorId]);
+
   if (isLoading) return <LoadingSpinner />;
 
   return (
@@ -174,9 +161,9 @@ console.log("check", selectedMarks)
           />
         </div>
       </div>
-      {selectedMarks ? (
+      {/* {selectedMarks ? (
         <UpdateMarks data={selectedMarks?.marks} marksWhole={selectedMarks} setIsLoading={setIsLoading} />
-      ) : (
+      ) : ( */}
         <MarkMarks
           data={studentsMarks}
           date={temporarySelection.date}
@@ -184,7 +171,7 @@ console.log("check", selectedMarks)
           instructorId={instructorId}
           setIsLoading={setIsLoading}
         />
-      )}
+      {/* )} */}
     </InstructorLayout>
   )
 }
