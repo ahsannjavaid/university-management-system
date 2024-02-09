@@ -1,10 +1,77 @@
-# Getting Started with Create React App
+# What is University Management System (UMS)?
+
+Assalam-u-Alaikum!
+
+University Management System is a sort of LMS where Admin can register instructors and instructor can register students and mark their attendance and academic records. Student see their record by loging into their respective accounts. It is similar to my [UN Portal](https://github.com/ahsannjavaid/un-portal/) project but one actor (Admin) is additional and also some functionalites are more logical in this project.
+
+## Summary/Flow of the Project:
+
+1. Admin is a secret entity. Admin can register instructors and courses of the university.
+2. Instructor can then offer course(s) that are being registered by the university (Admin).
+3. Students can register the courses offered by the instructors.
+3. Instructor can post marks of different activities done in class against each student's record.
+4. Then students can signup/login to their accounts through the Student ID / Amail Address.
+5. Students can check their received marks in different subjects enrolled by their instructors.
+
+
+# Technology Used
+
+MERN Stack
+
+## Client/Frontend
+
+* React.js
+* Bootstrap 5
+
+## Server/Backend
+
+* Express.js
+* Node.js
+
+## Database
+
+* MongoDB
+
+
+# Hosting
+
+I have used free services for the hosting of this project.
+
+## Client (Front-end)
+
+The front-end has been hosted on [Netlify](https://www.netlify.com/).
+
+## Server (Back-end)
+
+The back-end has been hosted on [Render](https://www.render.com/).
+
+
+# Server: Node.js, Express.js and MongoDB
+
+## Available Scripts
+
+First of all install dependencies by typing following command in **server** directory:
+
+### `npm install`
+
+In the server directory, you can run:
+
+### `npm start`
+
+Runs the server in the development mode at URL [http://localhost:5001](http://localhost:5001).
+
+
+# Client: Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-In the project directory, you can run:
+First of all install dependencies by typing following command in **client** directory:
+
+### `npm install`
+
+In the client directory, you can run:
 
 ### `npm start`
 
