@@ -7,7 +7,7 @@ import { toastErrorObject, toastSuccessObject } from "../../../utility/toasts";
 
 export default function UpdateAttendance({ data, setIsLoading, attendanceWhole }) {
   const [attendanceData, setAttendanceData] = useState(data);
-
+  
   useEffect(() => {
     setAttendanceData(data);
   }, [data]);
@@ -41,13 +41,12 @@ export default function UpdateAttendance({ data, setIsLoading, attendanceWhole }
       styles={"table-bordered"}
       headers={[
         "Roll Number",
-        "First Name",
-        "Last Name",
+        "Name",
         "Attendance",
       ]}
       data={attendanceData}
       setData={setAttendanceData}
-      dataAttributes={["rollNumber", "fname", "lname", "status"]}
+      dataAttributes={["rollNumber", "name", "status"]}
     />
     </>
   );

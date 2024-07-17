@@ -68,10 +68,10 @@ export default function MarkMarks({
       </button>
       <MarksTable
         styles={"table-bordered"}
-        headers={["Roll Number", "First Name", "Last Name", "Marks"]}
+        headers={["Roll Number", "Name", "Marks"]}
         data={marksData}
         setData={setMarksData}
-        dataAttributes={["rollNumber", "fname", "lname", "obtainedMarks"]}
+        dataAttributes={["rollNumber", "name", "obtainedMarks"]}
       />
     </>
   );

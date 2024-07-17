@@ -29,7 +29,7 @@ export default function InstructorStudents() {
           return;
         }
         console.log("Log data", resData);
-        setStudents(resData);
+        setStudents(resData?.map(student => ({ ...student, name: student.fname + " " + student.lname })));
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -47,14 +47,13 @@ export default function InstructorStudents() {
         styles={"table-bordered"}
         headers={[
           "Roll Number",
-          "First Name",
-          "Last Name",
-          "Email  Address",
+          "Name",
+          "Email Address",
           "Course",
           "Joining Date",
         ]}
         data={students}
-        dataAttributes={["rollNumber", "fname", "lname", "email", "courseTitle", "createdAt"]}
+        dataAttributes={["rollNumber", "name", "email", "courseTitle", "createdAt"]}
       />
     </InstructorLayout>
   );

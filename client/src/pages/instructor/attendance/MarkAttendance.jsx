@@ -30,6 +30,7 @@ export default function MarkAttendance({
         date,
         attendance: attendanceData?.map((attendance) => ({
           studentId: attendance._id,
+          name: attendance.fname + " " + attendance.lname,
           status: attendance.status,
         })),
         instructorId,
@@ -61,10 +62,10 @@ export default function MarkAttendance({
       </button>
       <AttendanceTable
         styles={"table-bordered"}
-        headers={["Roll Number", "First Name", "Last Name", "Attendance"]}
+        headers={["Roll Number", "Name", "Attendance"]}
         data={attendanceData}
         setData={setAttendanceData}
-        dataAttributes={["rollNumber", "fname", "lname", "status"]}
+        dataAttributes={["rollNumber", "name", "status"]}
       />
     </>
   );

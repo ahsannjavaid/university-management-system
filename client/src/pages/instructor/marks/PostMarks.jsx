@@ -68,6 +68,7 @@ export default function PostMarks() {
           resData.map((student) => ({
             ...student,
             studentId: student._id,
+            name: student.fname + " " + student.lname,
             obtainedMarks: 0,
           }))
         );

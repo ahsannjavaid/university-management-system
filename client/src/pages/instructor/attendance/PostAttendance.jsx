@@ -68,6 +68,7 @@ export default function PostAttendance() {
           resData.map((student) => ({
             ...student,
             studentId: student._id,
+            name: student.fname + " " + student.lname,
             status: "N/A",
           }))
         );
@@ -137,7 +138,7 @@ export default function PostAttendance() {
         </div>
       </div>
       {selectedAttendance ? (
-        <UpdateAttendance data={selectedAttendance?.attendance} attendanceWhole={selectedAttendance} setIsLoading={setIsLoading} />
+        <UpdateAttendance data={selectedAttendance?.attendance?.map(attendance => ({ ...attendance, name: attendance.fname + " " + attendance.lname }))} attendanceWhole={selectedAttendance} setIsLoading={setIsLoading} />
       ) : (
         <MarkAttendance
           data={studentsAttendance}
