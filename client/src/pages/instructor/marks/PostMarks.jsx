@@ -6,13 +6,13 @@ import { toast } from 'react-toastify';
 import { toastErrorObject } from '../../../utility/toasts';
 import { courseEndpoints } from '../../../api/endpoints/courseEndpoints';
 import SelectField from '../../../components/inputs/SelectField';
-// import UpdateMarks from "./UpdateMarks";
-import MarkMarks from "./MarkMarks";
+import UpdateMarks from "./UpdateMarks";
 
 export default function PostMarks() {
   const instructorId = JSON.parse(localStorage.getItem("instructor"))._id;
   const uniqueCourseIds = {};
   const uniqueExamTypes = {};
+  const selectedMarks = {};
   const uniqueActivityNumbers = {};
 
   const [academics, setAcademics] = useState([]);
@@ -159,17 +159,7 @@ export default function PostMarks() {
           />
         </div>
       </div>
-      {/* {selectedMarks ? (
-        <UpdateMarks data={selectedMarks?.marks} marksWhole={selectedMarks} setIsLoading={setIsLoading} />
-      ) : ( */}
-        <MarkMarks
-          data={studentsMarks.filter(student => student.courseId === temporarySelection.course)}
-          date={temporarySelection.date}
-          courseId={temporarySelection.course}
-          instructorId={instructorId}
-          setIsLoading={setIsLoading}
-        />
-      {/* )} */}
+      <UpdateMarks data={selectedMarks?.marks} marksWhole={selectedMarks} setIsLoading={setIsLoading} />
     </InstructorLayout>
   )
 }

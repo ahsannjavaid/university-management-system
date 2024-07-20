@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { fetchResponse } from '../../../api/service';
 import { instructorEndpoints } from '../../../api/endpoints/instructorEndpoints';
 import { toastErrorObject, toastSuccessObject } from '../../../utility/toasts';
@@ -7,6 +7,7 @@ import MarksTable from '../../../components/tables/MarksTable';
 
 export default function MarkMarks({
   data,
+  setData,
   courseId,
   instructorId,
   setIsLoading,
@@ -15,11 +16,6 @@ export default function MarkMarks({
   weightage,
   totalMarks,
 }) {
-  const [marksData, setMarksData] = useState(data);
-
-  useEffect(() => {
-    setMarksData(data);
-  }, [data]);
 
   async function postMarks() {
     setIsLoading(true);
@@ -27,12 +23,12 @@ export default function MarkMarks({
       let res;
       res = await fetchResponse(instructorEndpoints.postAcademics(), 1, {
         examType,
-        totalMarks,
+        totalMarks: parseFloat(totalMarks),
         activityNumber,
         weightage,
-        marks: marksData?.map((marks) => ({
+        marks: data?.map((marks) => ({
           studentId: marks._id,
-          obtainedMarks: marks.obtainedMarks,
+          obtainedMarks: parseFloat(marks.obtainedMarks),
         })),
         instructorId,
         courseId,
@@ -63,8 +59,8 @@ export default function MarkMarks({
       <MarksTable
         styles={'table-bordered'}
         headers={['Roll Number', 'Name', 'Marks']}
-        data={marksData}
-        setData={setMarksData}
+        data={data}
+        setData={setData}
         dataAttributes={['rollNumber', 'name', 'obtainedMarks']}
         totalMarks={totalMarks}
       />

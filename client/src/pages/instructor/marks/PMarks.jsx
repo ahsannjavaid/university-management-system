@@ -148,11 +148,13 @@ export default function PMarks() {
             />
           </div>
         </div>
-        <div className='col-md col-md-9 pt-4 pt-md-0'>
+        <div className='col-md col-md-9 pt-4 pt-md-0 overflow-auto'
+          style={{ maxHeight: '83vh' }}>
           <MarkMarks
             data={studentsMarks.filter(
               (student) => student.courseId === temporarySelection.course
             )}
+            setData={setStudentsMarks}
             courseId={temporarySelection.course}
             instructorId={instructorId}
             setIsLoading={setIsLoading}
