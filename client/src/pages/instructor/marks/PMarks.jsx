@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import InstructorLayout from '../../../layouts/InstructorLayout'
+import React, { useEffect, useState } from 'react';
+import InstructorLayout from '../../../layouts/InstructorLayout';
 import { fetchResponse } from '../../../api/service';
 import { instructorEndpoints } from '../../../api/endpoints/instructorEndpoints';
 import { toast } from 'react-toastify';
@@ -7,10 +7,10 @@ import { toastErrorObject } from '../../../utility/toasts';
 import { courseEndpoints } from '../../../api/endpoints/courseEndpoints';
 import SelectField from '../../../components/inputs/SelectField';
 // import UpdateMarks from "./UpdateMarks";
-import MarkMarks from "./MarkMarks";
+import MarkMarks from './MarkMarks';
 
-export default function PostMarks() {
-  const instructorId = JSON.parse(localStorage.getItem("instructor"))._id;
+export default function PMarks() {
+  const instructorId = JSON.parse(localStorage.getItem('instructor'))._id;
   const uniqueCourseIds = {};
   const uniqueExamTypes = {};
   const uniqueActivityNumbers = {};
@@ -18,9 +18,9 @@ export default function PostMarks() {
   const [academics, setAcademics] = useState([]);
   const [studentsMarks, setStudentsMarks] = useState([]);
   const [temporarySelection, setTemporarySelection] = useState({
-    examType: "",
-    activityNumber: "",
-    course: "",
+    examType: '',
+    activityNumber: '',
+    course: '',
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -39,7 +39,7 @@ export default function PostMarks() {
           setIsLoading(false);
           return;
         }
-        console.log("Log data", resData);
+        console.log('Log data', resData);
         setAcademics(resData);
         setIsLoading(false);
       } catch (error) {
@@ -62,12 +62,12 @@ export default function PostMarks() {
           setIsLoading(false);
           return;
         }
-        console.log("Log data", resData);
+        console.log('Log data', resData);
         setStudentsMarks(
           resData.map((student) => ({
             ...student,
             studentId: student._id,
-            name: student.fname + " " + student.lname,
+            name: student.fname + ' ' + student.lname,
             obtainedMarks: 0,
           }))
         );
@@ -82,10 +82,10 @@ export default function PostMarks() {
 
   return (
     <InstructorLayout isLoading={isLoading}>
-      <div className="row mb-4">
-      <div className="col col-4">
-        <SelectField
-            label={"Select Exam Type"}
+      <div className='row mb-4'>
+        <div className='col col-4'>
+          <SelectField
+            label={'Select Exam Type'}
             options={academics
               .filter((marks) => {
                 const examType = marks.examType;
@@ -108,9 +108,9 @@ export default function PostMarks() {
             }
           />
         </div>
-        <div className="col col-2">
-        <SelectField
-            label={"Select Activity Number"}
+        <div className='col col-2'>
+          <SelectField
+            label={'Select Activity Number'}
             options={academics
               .filter((marks) => {
                 const activityNumber = marks.activityNumber;
@@ -133,9 +133,9 @@ export default function PostMarks() {
             }
           />
         </div>
-        <div className="col col-6">
-        <SelectField
-            label={"Select Course"}
+        <div className='col col-6'>
+          <SelectField
+            label={'Select Course'}
             options={studentsMarks
               .filter((marks) => {
                 const courseId = marks.courseId;
@@ -162,14 +162,16 @@ export default function PostMarks() {
       {/* {selectedMarks ? (
         <UpdateMarks data={selectedMarks?.marks} marksWhole={selectedMarks} setIsLoading={setIsLoading} />
       ) : ( */}
-        <MarkMarks
-          data={studentsMarks.filter(student => student.courseId === temporarySelection.course)}
-          date={temporarySelection.date}
-          courseId={temporarySelection.course}
-          instructorId={instructorId}
-          setIsLoading={setIsLoading}
-        />
+      <MarkMarks
+        data={studentsMarks.filter(
+          (student) => student.courseId === temporarySelection.course
+        )}
+        date={temporarySelection.date}
+        courseId={temporarySelection.course}
+        instructorId={instructorId}
+        setIsLoading={setIsLoading}
+      />
       {/* )} */}
     </InstructorLayout>
-  )
+  );
 }

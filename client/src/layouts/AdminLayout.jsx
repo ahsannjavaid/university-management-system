@@ -1,8 +1,9 @@
-import React from "react";
-import DynamicNavbar from "../components/navbars/DynamicNavbar";
-import{ useAuth } from "../contexts/authContext";
+import React from 'react';
+import DynamicNavbar from '../components/navbars/DynamicNavbar';
+import { useAuth } from '../contexts/authContext';
+import LoadingSpinner from '../components/spinners/LoadingSpinner';
 
-export default function AdminLayout({ children }) {
+export default function AdminLayout({ isLoading, children }) {
   const { setAdminData } = useAuth();
 
   return (
@@ -10,41 +11,43 @@ export default function AdminLayout({ children }) {
       <DynamicNavbar
         options={[
           {
-            title: "Home",
-            path: "/admin",
+            title: 'Home',
+            path: '/admin',
           },
           {
-            title: "Register Instructor",
-            path: "/admin/instructors/register",
+            title: 'Register Instructor',
+            path: '/admin/instructors/register',
           },
           {
-            title: "Instructors",
-            path: "/admin/instructors/action",
+            title: 'Instructors',
+            path: '/admin/instructors/action',
           },
           {
-            title: "Register Course",
-            path: "/admin/courses/register",
+            title: 'Register Course',
+            path: '/admin/courses/register',
           },
           {
-            title: "Courses",
-            path: "/admin/courses/action",
+            title: 'Courses',
+            path: '/admin/courses/action',
           },
           {
-            title: "Settings",
-            path: "/admin/settings",
+            title: 'Settings',
+            path: '/admin/settings',
           },
         ]}
         functionalItem={{
-          title: "Logout",
+          title: 'Logout',
           function: () => {
             setAdminData(null);
-            localStorage.removeItem("admin");
-          }
+            localStorage.removeItem('admin');
+          },
         }}
       />
-      <div className="container mt-4">
-      {children}
-      </div>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div className='container mt-4'>{children}</div>
+      )}
     </>
   );
 }

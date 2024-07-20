@@ -3,7 +3,6 @@ import { fetchResponse } from "../../api/service";
 import { courseEndpoints } from "../../api/endpoints/courseEndpoints";
 import { toast } from "react-toastify";
 import { toastErrorObject } from "../../utility/toasts";
-import LoadingSpinner from "../../components/spinners/LoadingSpinner";
 import InstructorLayout from '../../layouts/InstructorLayout';
 import OfferCourseTable from '../../components/tables/OfferCourseTable';
 
@@ -94,10 +93,8 @@ export default function InstructorCourses() {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <InstructorLayout>
+    <InstructorLayout isLoading={isLoading}>
       <OfferCourseTable
         styles={"table-bordered"}
         headers={[

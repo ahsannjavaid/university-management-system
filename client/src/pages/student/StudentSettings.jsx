@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useAuth } from '../../contexts/authContext';
 import { fetchResponse } from '../../api/service';
 import { studentEndpoints } from '../../api/endpoints/studentEndpoints';
 import { toastErrorObject, toastSuccessObject } from '../../utility/toasts';
 import { toast } from 'react-toastify';
-import LoadingSpinner from '../../components/spinners/LoadingSpinner';
 import StudentLayout from '../../layouts/StudentLayout';
 import GeneralCard from '../../components/cards/GeneralCard';
 import SignupForm from '../../components/forms/SignupForm';
 
 export default function StudentSettings() {
-  const studentId = JSON.parse(localStorage.getItem("student"))._id;
+  const studentId = JSON.parse(localStorage.getItem('student'))._id;
 
   const { studentData, setStudentData } = useAuth();
 
@@ -46,10 +45,10 @@ export default function StudentSettings() {
         lname: studentDetails.lname,
         email: studentDetails.email,
         password: studentDetails.password,
-      }
+      };
       setStudentData(updatedData);
-      localStorage.setItem("student", JSON.stringify(updatedData));
-      console.log("Log data", data);
+      localStorage.setItem('student', JSON.stringify(updatedData));
+      console.log('Log data', data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -57,15 +56,13 @@ export default function StudentSettings() {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <StudentLayout>
+    <StudentLayout isLoading={isLoading}>
       <div
-        className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: "81vh" }}
+        className='d-flex align-items-center justify-content-center'
+        style={{ minHeight: '81vh' }}
       >
-        <GeneralCard header={"Edit Information"}>
+        <GeneralCard header={'Edit Information'}>
           <SignupForm
             signupDetails={studentDetails}
             setSignupDetails={setStudentDetails}

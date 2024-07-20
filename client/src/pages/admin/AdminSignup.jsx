@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import HomeLayout from "../../layouts/HomeLayout";
 import GeneralCard from "../../components/cards/GeneralCard";
 import SignupForm from "../../components/forms/SignupForm";
-import LoadingSpinner from "../../components/spinners/LoadingSpinner";
 import { adminEndpoints } from "../../api/endpoints/adminEndpoints";
 import { fetchResponse } from "../../api/service";
 import { toast } from "react-toastify";
@@ -44,10 +43,8 @@ export default function AdminSignup() {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <HomeLayout>
+    <HomeLayout isLoading={isLoading}>
       <GeneralCard header={"Admin Signup"}>
         <SignupForm
           signupDetails={signupDetails}

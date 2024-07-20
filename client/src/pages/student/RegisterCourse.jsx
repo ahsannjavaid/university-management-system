@@ -4,7 +4,6 @@ import { fetchResponse } from '../../api/service';
 import { courseEndpoints } from '../../api/endpoints/courseEndpoints';
 import { toastErrorObject, toastSuccessObject } from '../../utility/toasts';
 import { toast } from 'react-toastify';
-import LoadingSpinner from '../../components/spinners/LoadingSpinner';
 import RegisterCourseTable from '../../components/tables/RegisterCourseTable';
 
 export default function RegisterCourse() {
@@ -65,10 +64,8 @@ export default function RegisterCourse() {
       }
     }
   
-    if (isLoading) return <LoadingSpinner />;
-  
     return (
-      <StudentLayout>
+      <StudentLayout isLoading={isLoading}>
         <RegisterCourseTable
           styles={"table-bordered"}
           headers={[

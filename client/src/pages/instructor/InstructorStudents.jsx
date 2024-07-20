@@ -4,7 +4,6 @@ import { courseEndpoints } from '../../api/endpoints/courseEndpoints';
 import { fetchResponse } from '../../api/service';
 import { toast } from 'react-toastify';
 import { toastErrorObject } from '../../utility/toasts';
-import LoadingSpinner from '../../components/spinners/LoadingSpinner';
 import DynamicTable from '../../components/tables/DynamicTable';
 import SelectField from '../../components/inputs/SelectField';
 import moment from 'moment';
@@ -51,10 +50,8 @@ export default function InstructorStudents() {
     fetchData();
   }, [instructorId]);
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <InstructorLayout>
+    <InstructorLayout isLoading={isLoading}>
       <div className='mb-4'>
         <SelectField
           label={'Select Course'}

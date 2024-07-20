@@ -5,7 +5,6 @@ import { courseEndpoints } from '../../../api/endpoints/courseEndpoints';
 import { fetchResponse } from '../../../api/service';
 import { toast } from 'react-toastify';
 import { toastErrorObject } from '../../../utility/toasts';
-import LoadingSpinner from '../../../components/spinners/LoadingSpinner';
 import UpdateAttendance from './UpdateAttendance';
 import SelectField from '../../../components/inputs/SelectField';
 import InputField from '../../../components/inputs/InputField';
@@ -93,10 +92,8 @@ export default function PostAttendance() {
     // eslint-disable-next-line
   }, [instructorId, selectedAttendance, temporarySelection]);
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <InstructorLayout>
+    <InstructorLayout isLoading={isLoading}>
       <div className='row mb-4'>
         <div className='col'>
           <InputField

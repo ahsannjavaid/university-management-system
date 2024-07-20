@@ -4,7 +4,6 @@ import { fetchResponse } from '../../../api/service';
 import { courseEndpoints } from '../../../api/endpoints/courseEndpoints';
 import { toastErrorObject } from '../../../utility/toasts';
 import { toast } from 'react-toastify';
-import LoadingSpinner from '../../../components/spinners/LoadingSpinner';
 import ActionDynamicTable from "../../../components/tables/ActionDynamicTable";
 
 export default function ViewAndActionCourse() {
@@ -66,10 +65,8 @@ export default function ViewAndActionCourse() {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <AdminLayout>
+    <AdminLayout isLoading={isLoading}>
       <ActionDynamicTable
         styles={"table-bordered"}
         headers={[

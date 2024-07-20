@@ -4,7 +4,6 @@ import { fetchResponse } from '../../api/service';
 import { studentEndpoints } from '../../api/endpoints/studentEndpoints';
 import { toast } from 'react-toastify';
 import { toastErrorObject } from '../../utility/toasts';
-import LoadingSpinner from '../../components/spinners/LoadingSpinner';
 import DynamicTable from '../../components/tables/DynamicTable';
 
 export default function Attendance() {
@@ -39,10 +38,8 @@ export default function Attendance() {
     fetchData();
   }, [studentId]);
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <StudentLayout>
+    <StudentLayout isLoading={isLoading}>
       <DynamicTable
         styles={"table-bordered"}
         headers={[

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import InstructorLayout from "../../layouts/InstructorLayout";
 import GeneralCard from "../../components/cards/GeneralCard";
 import SignupForm from "../../components/forms/SignupForm";
-import LoadingSpinner from "../../components/spinners/LoadingSpinner";
 import { instructorEndpoints } from "../../api/endpoints/instructorEndpoints";
 import { fetchResponse } from "../../api/service";
 import { toastErrorObject, toastSuccessObject } from "../../utility/toasts";
@@ -57,10 +56,8 @@ export default function InstructorSettings() {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <InstructorLayout>
+    <InstructorLayout isLoading={isLoading}>
       <div
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "81vh" }}

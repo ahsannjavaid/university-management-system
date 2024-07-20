@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../../../layouts/AdminLayout";
-import LoadingSpinner from "../../../components/spinners/LoadingSpinner";
 import { instructorEndpoints } from "../../../api/endpoints/instructorEndpoints";
 import { fetchResponse } from "../../../api/service";
 import { toast } from "react-toastify";
@@ -66,10 +65,8 @@ export default function ViewAndActionInstructor() {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <AdminLayout>
+    <AdminLayout isLoading={isLoading}>
       <ActionDynamicTable
         styles={"table-bordered"}
         headers={[

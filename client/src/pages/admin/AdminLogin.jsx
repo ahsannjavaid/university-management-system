@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import HomeLayout from "../../layouts/HomeLayout";
 import GeneralCard from "../../components/cards/GeneralCard";
 import LoginForm from "../../components/forms/LoginForm";
-import LoadingSpinner from "../../components/spinners/LoadingSpinner";
 import { fetchResponse } from "../../api/service";
 import { adminEndpoints } from "../../api/endpoints/adminEndpoints";
 import { toastErrorObject, toastSuccessObject } from "../../utility/toasts";
@@ -47,10 +46,8 @@ export default function StudentLogin() {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <HomeLayout>
+    <HomeLayout isLoading={isLoading}>
       <GeneralCard header={"Admin Login"}>
         <LoginForm
           loginDetails={loginDetails}

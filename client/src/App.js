@@ -28,6 +28,7 @@ import RegisterCourseStudent from "./pages/student/RegisterCourse";
 import StudentSettings from "./pages/student/StudentSettings";
 import Marks from "./pages/student/Marks";
 import Attendance from "./pages/student/Attendance";
+import PMarks from "./pages/instructor/marks/PMarks";
 
 export default function App() {
   const { studentData, instructorData, adminData } = useAuth();
@@ -49,7 +50,11 @@ export default function App() {
             element={instructorData ? <InstructorStudents /> : <InstructorLogin />}
           />
           <Route
-            path="/instructor/marks"
+            path="/instructor/marks/post"
+            element={instructorData ? <PMarks /> : <InstructorLogin />}
+          />
+          <Route
+            path="/instructor/marks/view-or-update"
             element={instructorData ? <PostMarks /> : <InstructorLogin />}
           />
           <Route

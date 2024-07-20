@@ -5,7 +5,6 @@ import { fetchResponse } from '../../../api/service';
 import { courseEndpoints } from '../../../api/endpoints/courseEndpoints';
 import { toast } from 'react-toastify';
 import { toastErrorObject, toastSuccessObject } from '../../../utility/toasts';
-import LoadingSpinner from '../../../components/spinners/LoadingSpinner';
 import GeneralCard from '../../../components/cards/GeneralCard';
 import CourseRegisterForm from '../../../components/forms/CourseRegisterForm';
 
@@ -47,10 +46,8 @@ export default function RegisterCourse() {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <AdminLayout>
+    <AdminLayout isLoading={isLoading}>
       <div
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "81vh" }}

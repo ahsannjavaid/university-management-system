@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import HomeLayout from "../../layouts/HomeLayout";
-import GeneralCard from "../../components/cards/GeneralCard";
-import LoginForm from "../../components/forms/LoginForm";
-import LoadingSpinner from "../../components/spinners/LoadingSpinner";
-import { fetchResponse } from "../../api/service";
-import { studentEndpoints } from "../../api/endpoints/studentEndpoints";
-import { toastErrorObject, toastSuccessObject } from "../../utility/toasts";
-import { toast } from "react-toastify";
-import { useAuth } from "../../contexts/authContext";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import HomeLayout from '../../layouts/HomeLayout';
+import GeneralCard from '../../components/cards/GeneralCard';
+import LoginForm from '../../components/forms/LoginForm';
+import { fetchResponse } from '../../api/service';
+import { studentEndpoints } from '../../api/endpoints/studentEndpoints';
+import { toastErrorObject, toastSuccessObject } from '../../utility/toasts';
+import { toast } from 'react-toastify';
+import { useAuth } from '../../contexts/authContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function StudentLogin() {
   const { setStudentData } = useAuth();
@@ -16,9 +15,9 @@ export default function StudentLogin() {
   const navigate = useNavigate();
 
   const [loginDetails, setLoginDetails] = useState({
-    email: "",
+    email: '',
     rollNumber: null,
-    password: "",
+    password: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,22 +37,25 @@ export default function StudentLogin() {
         return;
       }
       toast.success(res.message, toastSuccessObject);
-      console.log("Log data", data);
+      console.log('Log data', data);
       setStudentData(data);
-      localStorage.setItem("student", JSON.stringify(data));
-      navigate("/student");
+      localStorage.setItem('student', JSON.stringify(data));
+      navigate('/student');
     } catch (error) {
       console.log(error);
       setIsLoading(false);
     }
   }
 
-  if (isLoading) return <LoadingSpinner />
-
   return (
-    <HomeLayout>
-      <GeneralCard header={"Student Login"}>
-        <LoginForm loginDetails={loginDetails} setLoginDetails={setLoginDetails} login={handleLogin} domain={"student"} />
+    <HomeLayout isLoading={isLoading}>
+      <GeneralCard header={'Student Login'}>
+        <LoginForm
+          loginDetails={loginDetails}
+          setLoginDetails={setLoginDetails}
+          login={handleLogin}
+          domain={'student'}
+        />
       </GeneralCard>
     </HomeLayout>
   );

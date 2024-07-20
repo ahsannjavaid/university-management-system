@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import GeneralCard from "../../../components/cards/GeneralCard";
 import SignupForm from "../../../components/forms/SignupForm";
-import LoadingSpinner from "../../../components/spinners/LoadingSpinner";
 import { fetchResponse } from "../../../api/service";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -44,10 +43,8 @@ export default function RegisterInstructor() {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />;
-
   return (
-    <AdminLayout>
+    <AdminLayout isLoading={isLoading}>
       <div
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "81vh" }}
