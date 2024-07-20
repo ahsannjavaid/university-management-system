@@ -1,7 +1,9 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function DynamicNavbar({ options, functionalItem }) {
+  const { pathname } = useLocation();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
       <div className="container">
@@ -24,13 +26,13 @@ export default function DynamicNavbar({ options, functionalItem }) {
             {options.map((option, index) => {
               return (
                 <li key={index} className="nav-item">
-                  <NavLink
+                  <Link
                     to={option.path}
-                    className="nav-link"
+                    className={"nav-link" + (pathname === option.path ? " active" : "")}
                     aria-current="page"
                   >
                     {option.title}
-                  </NavLink>
+                  </Link>
                 </li>
               );
             })}

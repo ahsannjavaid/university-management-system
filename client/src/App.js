@@ -40,6 +40,7 @@ export default function App() {
           <Route exact path="/" element={<Home />} />
 
           <Route
+            exact
             path="/instructor"
             element={instructorData ? <Instructor /> : <InstructorLogin />}
           />
@@ -66,6 +67,7 @@ export default function App() {
           <Route path="/instructor/login" element={<InstructorLogin />} />
 
           <Route
+            exact
             path="/student"
             element={studentData ? <Student /> : <StudentLogin />}
           />
