@@ -12,7 +12,7 @@ router.delete("/delete/:id", deleteInstructor);
 
 router.post("/postAcademics", postAcademics);
 router.put("/editAcademics/:id", editAcademics);
-router.get("/getAcademics/:id", getAcademics);
+router.get("/getAcademics", getAcademics);
 
 router.post("/postAttendance", postAttendance);
 router.put("/editAttendance/:id", editAttendance);

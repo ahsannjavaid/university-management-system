@@ -1,6 +1,6 @@
-import { BASE_URL } from "../config";
+import { BASE_URL } from '../config';
 
-const title = "instructor/";
+const title = 'instructor/';
 
 export const instructorEndpoints = {
   loginInstructor: () => `${BASE_URL}${title}login`,
@@ -15,7 +15,8 @@ export const instructorEndpoints = {
 
   editAttendance: (id) => `${BASE_URL}${title}editAttendance/${id}`,
 
-  getAcademics: (id) => `${BASE_URL}${title}getAcademics/${id}`,
+  getAcademics: (instructorId, courseId, examType, activityNumber) =>
+    `${BASE_URL}${title}getAcademics?instructorId=${instructorId}&courseId=${courseId}&examType=${examType}&activityNumber=${activityNumber}`,
 
   postAcademics: () => `${BASE_URL}${title}postAcademics`,
 
