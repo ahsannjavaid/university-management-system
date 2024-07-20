@@ -114,9 +114,9 @@ export default function PostAttendance() {
         <div className='col'>
           <SelectField
             label={'Select Course'}
-            options={attendances
+            options={studentsAttendance
               .filter((attendance) => {
-                const courseId = attendance.course._id;
+                const courseId = attendance.courseId;
                 if (!uniqueCourseIds[courseId]) {
                   uniqueCourseIds[courseId] = true;
                   return true;
@@ -124,8 +124,8 @@ export default function PostAttendance() {
                 return false;
               })
               .map((attendance) => ({
-                value: attendance.course._id,
-                title: attendance.course.title,
+                value: attendance.courseId,
+                title: attendance.courseTitle,
               }))}
             value={temporarySelection?.course}
             onChange={(event) =>
