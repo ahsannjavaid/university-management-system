@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function InputField({ label, type, value, onChange, required }) {
+export default function InputField({ label, type, value, onChange, required, min, max }) {
   return (
     <>
       {label ? <label className="form-label">{label}</label> : null}
@@ -10,6 +10,8 @@ export default function InputField({ label, type, value, onChange, required }) {
         value={value}
         onChange={onChange}
         required={required}
+        min={min}
+        max={max}
       />
     </>
   )

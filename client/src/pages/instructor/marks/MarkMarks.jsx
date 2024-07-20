@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { fetchResponse } from "../../../api/service";
-import { instructorEndpoints } from "../../../api/endpoints/instructorEndpoints";
-import { toastErrorObject, toastSuccessObject } from "../../../utility/toasts";
-import { toast } from "react-toastify";
-import MarksTable from "../../../components/tables/MarksTable";
+import React, { useEffect, useState } from 'react';
+import { fetchResponse } from '../../../api/service';
+import { instructorEndpoints } from '../../../api/endpoints/instructorEndpoints';
+import { toastErrorObject, toastSuccessObject } from '../../../utility/toasts';
+import { toast } from 'react-toastify';
+import MarksTable from '../../../components/tables/MarksTable';
 
 export default function MarkMarks({
   data,
-  date,
   courseId,
   instructorId,
   setIsLoading,
@@ -22,11 +21,7 @@ export default function MarkMarks({
     setMarksData(data);
   }, [data]);
 
-  async function postAttendance() {
-    if (!courseId) {
-      alert("Please Select a Course.");
-      return;
-    }
+  async function postMarks() {
     setIsLoading(true);
     try {
       let res;
@@ -49,7 +44,7 @@ export default function MarkMarks({
         return;
       }
       toast.success(res.message, toastSuccessObject);
-      console.log("Log data", resData); 
+      console.log('Log data', resData);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -57,21 +52,21 @@ export default function MarkMarks({
     }
   }
 
-  console.log(marksData);
   return (
     <>
       <button
-        onClick={postAttendance}
-        className="btn btn-sm btn-secondary w-100 mb-3"
+        onClick={postMarks}
+        className='btn btn-sm btn-secondary w-100 mb-3'
       >
         Post
       </button>
       <MarksTable
-        styles={"table-bordered"}
-        headers={["Roll Number", "Name", "Marks"]}
+        styles={'table-bordered'}
+        headers={['Roll Number', 'Name', 'Marks']}
         data={marksData}
         setData={setMarksData}
-        dataAttributes={["rollNumber", "name", "obtainedMarks"]}
+        dataAttributes={['rollNumber', 'name', 'obtainedMarks']}
+        totalMarks={totalMarks}
       />
     </>
   );

@@ -7,6 +7,7 @@ export default function MarksTable({
   data,
   setData,
   dataAttributes,
+  totalMarks
 }) {
   return (
     <table className={"table " + styles}>
@@ -41,6 +42,7 @@ export default function MarksTable({
                                 });
                               }}
                             required={true}
+                            max={totalMarks}
                         />
                         : item[attribute]}
                     </td>

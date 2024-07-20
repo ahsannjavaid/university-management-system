@@ -3,8 +3,9 @@ import React from "react";
 export default function SelectField({ label, options, value, onChange, required }) {
   return (
     <>
-      {label ? <label className="form-label">{label}</label> : null}
+      {label ? <label htmlFor={label} className="form-label">{label}</label> : null}
       <select
+        id={label}
         className="form-select"
         value={value}
         onChange={onChange}

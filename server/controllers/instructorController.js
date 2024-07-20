@@ -287,10 +287,20 @@ const postAcademics = async (req, res) => {
 
     // validation
     switch (true) {
+      case !courseId:
+        return res.status(400).send({
+          success: false,
+          message: "Course ID is mandatory!",
+        });
       case !examType:
         return res.status(400).send({
           success: false,
           message: "Exam type is mandatory!",
+        });
+      case !activityNumber:
+        return res.status(400).send({
+          success: false,
+          message: "Activity number is mandatory!",
         });
       case !weightage:
         return res.status(400).send({
@@ -312,13 +322,25 @@ const postAcademics = async (req, res) => {
           success: false,
           message: "Instructor ID is mandatory!",
         });
-      case !courseId:
-        return res.status(400).send({
-          success: false,
-          message: "Course ID is mandatory!",
-        });
       default:
         break;
+    }
+
+    // validate obtained marks
+    if (marks?.some(m => m?.obtainedMarks > totalMarks)) {
+      return res.status(400).send({
+        success: false,
+        message: "Obtained marks cannot be greater than total marks!",
+      });
+    }
+
+    // validate record existence
+    const recordExists = await academicSchema.findOne({ examType, activityNumber, courseId, instructorId });
+    if (recordExists) {
+      return res.status(409).send({
+        success: false,
+        message: `You had already posted the record of '${examType} ${activityNumber}' of this course. Can't post again.`,
+      });
     }
 
     // posting academic
