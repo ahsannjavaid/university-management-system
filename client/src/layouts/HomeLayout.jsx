@@ -10,7 +10,7 @@ export default function HomeLayout({ isLoading, children }) {
         <LoadingSpinner />
       ) : (
         <div
-          className='d-flex align-items-center justify-content-center'
+          className='d-flex align-items-center justify-content-center flex-column flex-md-row'
           style={{ minHeight: '91vh' }}
         >
           {children}

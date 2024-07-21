@@ -3,7 +3,7 @@ import React from "react";
 export default function GeneralCard({ header, children }) {
   return (
     <div
-      className="card shadow"
+      className="card shadow mx-auto"
       style={{
         pointerEvents: "auto",
         borderRadius: "20px",
