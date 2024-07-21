@@ -20,6 +20,11 @@ app.use("/v1/api/course", courseRoute);
 app.use("/v1/api/instructor", instructorRoute);
 app.use("/v1/api/student", studentRoute);
 
+// server status
+app.get("/v1/api/", (req, res) => {
+    res.status(200).send({ success: true, message: "UMS server is active!"});
+})
+
 // listening
 app.listen(PORT, () => {
     console.log(`Server started at localhost:${PORT}.`);

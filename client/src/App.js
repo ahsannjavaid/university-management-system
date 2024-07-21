@@ -29,6 +29,7 @@ import StudentSettings from "./pages/student/StudentSettings";
 import Marks from "./pages/student/Marks";
 import Attendance from "./pages/student/Attendance";
 import ViewMarks from "./pages/instructor/marks/ViewMarks";
+import Activator from "./Activator";
 
 export default function App() {
   const { studentData, instructorData, adminData } = useAuth();
@@ -36,6 +37,7 @@ export default function App() {
   return (
     <>
       <ToastContainer />
+      <Activator />
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
