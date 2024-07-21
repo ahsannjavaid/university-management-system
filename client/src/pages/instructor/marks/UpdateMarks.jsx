@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MarksTable from '../../../components/tables/MarksTable';
 import { fetchResponse } from '../../../api/service';
 import { instructorEndpoints } from '../../../api/endpoints/instructorEndpoints';
@@ -7,8 +7,13 @@ import { toastErrorObject, toastSuccessObject } from '../../../utility/toasts';
 import InputField from '../../../components/inputs/InputField';
 
 export default function UpdateMarks({ data, setData, setIsLoading }) {
+  const [ marksData, setMarksData ] = useState(data?.marks);
+
+  useEffect(() => {
+    setMarksData(data?.marks);
+  }, [data?.marks]);
+
   async function updateMarks() {
-    setIsLoading(true);
     try {
       let res;
       res = await fetchResponse(
@@ -16,21 +21,18 @@ export default function UpdateMarks({ data, setData, setIsLoading }) {
         2,
         {
           ...data,
-          marks: data?.marks,
+          marks: marksData,
         }
       );
       const resData = res.data;
       if (!res.success) {
         toast.error(res.message, toastErrorObject);
-        setIsLoading(false);
         return;
       }
       toast.success(res.message, toastSuccessObject);
       console.log('Log data', resData);
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
     }
   }
 
@@ -79,8 +81,8 @@ export default function UpdateMarks({ data, setData, setIsLoading }) {
       <MarksTable
         styles={'table-bordered'}
         headers={['Roll Number', 'Name', 'Obtained Marks']}
-        data={data?.marks}
-        setData={setData}
+        data={marksData}
+        setData={setMarksData}
         dataAttributes={['rollNumber', 'name', 'obtainedMarks']}
       />
     </>

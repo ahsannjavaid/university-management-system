@@ -435,6 +435,14 @@ const editAcademics = async (req, res) => {
         break;
     }
 
+    // validate obtained marks
+    if (marks?.some((m) => m?.obtainedMarks > totalMarks)) {
+      return res.status(400).send({
+        success: false,
+        message: 'Obtained marks cannot be greater than total marks!',
+      });
+    }
+
     // editing attendance
     const editMarks = await academicSchema.findByIdAndUpdate(
       id,
