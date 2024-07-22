@@ -25,7 +25,7 @@ export default function DynamicNavbar({ options, functionalItem }) {
         ) : null}
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0 mx-auto'>
-            {options.map((option, index) => {
+            {options?.map((option, index) => {
               return option.children ? (
                 <li key={index} className='nav-item dropdown'>
                   <span

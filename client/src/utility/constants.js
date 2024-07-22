@@ -7,4 +7,4 @@ export const examTypes = [
     "Project",
     "Sessional",
     "Final",
-]
+];
