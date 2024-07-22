@@ -8,7 +8,7 @@ export default function LoginForm({
   login,
   domain,
 }) {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   return (
     <form onSubmit={(event) => login(event)}>
@@ -21,7 +21,7 @@ export default function LoginForm({
               <input
                 className="form-control mb-4"
                 type="text"
-                value={loginDetails.rollNumber}
+                value={loginDetails.rollNumber ?? ""}
                 onChange={(event) =>
                   setLoginDetails({
                     ...loginDetails,
