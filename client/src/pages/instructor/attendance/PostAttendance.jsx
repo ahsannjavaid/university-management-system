@@ -63,8 +63,15 @@ export default function PostAttendance() {
           return;
         }
         console.log('Log data', resData);
+        const sortedStudents = resData?.sort((a, b) => {
+          const fnameComparison = a.fname.localeCompare(b.fname);
+          if (fnameComparison !== 0) {
+            return fnameComparison;
+          }
+          return a.lname.localeCompare(b.lname);
+        });
         setStudentsAttendance(
-          resData.map((student) => ({
+          sortedStudents.map((student) => ({
             ...student,
             studentId: student._id,
             name: student.fname + ' ' + student.lname,
@@ -120,6 +127,7 @@ export default function PostAttendance() {
                 }
                 return false;
               })
+              .sort((a, b) => a.courseTitle.localeCompare(b.courseTitle))
               .map((attendance) => ({
                 value: attendance.courseId,
                 title: attendance.courseTitle,

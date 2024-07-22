@@ -39,8 +39,15 @@ export default function PostMarks() {
           return;
         }
         console.log('Log data', resData);
+        const sortedStudents = resData?.sort((a, b) => {
+          const fnameComparison = a.fname.localeCompare(b.fname);
+          if (fnameComparison !== 0) {
+            return fnameComparison;
+          }
+          return a.lname.localeCompare(b.lname);
+        });
         setStudentsMarks(
-          resData.map((student) => ({
+          sortedStudents.map((student) => ({
             ...student,
             studentId: student._id,
             name: student.fname + ' ' + student.lname,
@@ -75,6 +82,7 @@ export default function PostMarks() {
                   }
                   return false;
                 })
+                .sort((a, b) => a.courseTitle.localeCompare(b.courseTitle))
                 .map((marks) => ({
                   value: marks.courseId,
                   title: marks.courseTitle,

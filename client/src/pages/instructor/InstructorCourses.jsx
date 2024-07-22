@@ -29,7 +29,7 @@ export default function InstructorCourses() {
           return;
         }
         console.log("Log data", resData);
-        setCourses(resData);
+        setCourses(resData?.sort((a, b) => a.title.localeCompare(b.title)));
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -53,7 +53,7 @@ export default function InstructorCourses() {
           return;
         }
         console.log("Log data", resData);
-        setAllCourses(resData);
+        setAllCourses(resData?.sort((a, b) => a.title.localeCompare(b.title)));
         setIsLoading(false);
       } catch (error) {
         console.log(error);

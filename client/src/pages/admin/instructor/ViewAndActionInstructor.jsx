@@ -26,7 +26,13 @@ export default function ViewAndActionInstructor() {
           return;
         }
         console.log("Log data", resData);
-        setInstructors(resData);
+        setInstructors(resData?.sort((a, b) => {
+          const fnameComparison = a.fname.localeCompare(b.fname);
+          if (fnameComparison !== 0) {
+            return fnameComparison;
+          }
+          return a.lname.localeCompare(b.lname);
+        }));        
         setIsLoading(false);
       } catch (error) {
         console.log(error);

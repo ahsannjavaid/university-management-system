@@ -6,11 +6,18 @@ import { toast } from 'react-toastify';
 import { toastErrorObject, toastSuccessObject } from '../../../utility/toasts';
 import InputField from '../../../components/inputs/InputField';
 
-export default function UpdateMarks({ data, setData, setIsLoading }) {
+export default function UpdateMarks({ data, setData }) {
   const [ marksData, setMarksData ] = useState(data?.marks);
 
   useEffect(() => {
-    setMarksData(data?.marks);
+    const sortedStudents = data?.marks?.sort((a, b) => {
+      const fnameComparison = a.fname.localeCompare(b.fname);
+      if (fnameComparison !== 0) {
+        return fnameComparison;
+      }
+      return a.lname.localeCompare(b.lname);
+    });
+    setMarksData(sortedStudents);
   }, [data?.marks]);
 
   async function updateMarks() {

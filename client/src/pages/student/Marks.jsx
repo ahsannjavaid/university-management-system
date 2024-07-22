@@ -28,7 +28,22 @@ export default function Marks() {
           return;
         }
         console.log("Log data", resData);
-        setMarksData(resData);
+        const sortedMarksData = resData?.sort((a, b) => {
+          const instructorComparison = a.instructorName.localeCompare(b.instructorName);
+          if (instructorComparison !== 0) {
+            return instructorComparison;
+          }
+          const courseComparison = a.courseTitle.localeCompare(b.courseTitle);
+          if (courseComparison !== 0) {
+            return courseComparison;
+          }
+          const examComparison = a.examType.localeCompare(b.examType);
+          if (examComparison !== 0) {
+            return examComparison;
+          }
+          return a.activityNumber - b.activityNumber;
+        });
+        setMarksData(sortedMarksData);        
         setIsLoading(false);
       } catch (error) {
         console.log(error);

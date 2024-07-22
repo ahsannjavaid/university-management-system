@@ -28,7 +28,17 @@ export default function Attendance() {
           return;
         }
         console.log("Log data", resData);
-        setAttendanceData(resData);
+        const sortedAttendances = resData?.sort((a, b) => {
+          const courseComparison = a.courseTitle.localeCompare(b.courseTitle);
+          if (courseComparison !== 0) {
+            return courseComparison;
+          }
+          // Convert date strings to Date objects for accurate comparison
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateA - dateB;
+        });
+        setAttendanceData(sortedAttendances);        
         setIsLoading(false);
       } catch (error) {
         console.log(error);

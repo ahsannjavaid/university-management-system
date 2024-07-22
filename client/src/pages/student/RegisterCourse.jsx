@@ -28,7 +28,14 @@ export default function RegisterCourse() {
             return;
           }
           console.log("Log data", resData);
-          setCourses(resData);
+          const sortedCourses = resData?.sort((a, b) => {
+            const titleComparison = a.title.localeCompare(b.title);
+            if (titleComparison !== 0) {
+              return titleComparison;
+            }
+            return a.instructorName.localeCompare(b.instructorName);
+          });
+          setCourses(sortedCourses);
           setIsLoading(false);
         } catch (error) {
           console.log(error);

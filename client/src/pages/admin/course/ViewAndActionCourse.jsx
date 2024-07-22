@@ -26,7 +26,7 @@ export default function ViewAndActionCourse() {
           return;
         }
         console.log("Log data", resData);
-        setCourses(resData);
+        setCourses(resData?.sort((a, b) => a.title.localeCompare(b.title)));
         setIsLoading(false);
       } catch (error) {
         console.log(error);

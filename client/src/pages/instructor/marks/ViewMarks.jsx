@@ -106,6 +106,7 @@ export default function ViewMarks() {
                 }
                 return false;
               })
+              .sort((a, b) => a.courseTitle.localeCompare(b.courseTitle))
               .map((student) => ({
                 value: student.courseId,
                 title: student.courseTitle,
@@ -148,7 +149,7 @@ export default function ViewMarks() {
           />
         </div>
       </div>
-      <UpdateMarks data={academics} setData={setAcademics} setIsLoading={setIsLoading} />
+      <UpdateMarks data={academics} setData={setAcademics} />
     </InstructorLayout>
   );
 }
