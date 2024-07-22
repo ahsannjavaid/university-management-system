@@ -13,7 +13,7 @@ export default function StudentLayout({ isLoading, children }) {
       navbarOptions={options}
       navbarFunctionalItem={functionalItem}
     >
-      <div className='container mt-4'>{children}</div>
+      <div className='mt-4'>{children}</div>
     </Layout>
   );
 }

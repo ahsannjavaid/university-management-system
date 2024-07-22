@@ -12,7 +12,7 @@ export default function Admin() {
         data={[
           {
             title: "Name",
-            value: adminData.fname
+            value: adminData.fname + ' ' + adminData.lname
           },
           {
             title: "Email Address",
