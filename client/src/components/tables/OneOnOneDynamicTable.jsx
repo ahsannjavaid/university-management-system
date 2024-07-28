@@ -3,7 +3,7 @@ import React from "react";
 
 export default function OneOnOneDynamicTable({ data, styles }) {
   return (
-    <table className={"table text-center table-bordered"}>
+    <table className={"table table-sm text-center table-bordered"}>
       {data?.length ? (
         data.map((item, index) => {
           return (

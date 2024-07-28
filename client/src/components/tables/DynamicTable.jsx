@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import TableLayout from "./TableLayout";
 
 export default function DynamicTable({
   styles,
@@ -8,8 +9,9 @@ export default function DynamicTable({
   dataAttributes,
 }) {
   return (
-    <table className={"table " + styles}>
-      <thead>
+    <TableLayout>
+    <table className={"table table-sm " + styles}>
+      <thead className="bg-light text-secondary">
         <tr>
           {headers?.map((header, index) => {
             return <th key={index}>{header}</th>;
@@ -42,5 +44,6 @@ export default function DynamicTable({
         )}
       </tbody>
     </table>
+    </TableLayout>
   );
 }
