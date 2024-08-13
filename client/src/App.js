@@ -102,6 +102,7 @@ export default function App() {
           <Route path="/student/signup" element={<StudentSignup />} />
          
           <Route
+            exact
             path="/admin"
             element={adminData ? <Admin /> : <AdminLogin />}
           />
