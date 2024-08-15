@@ -523,15 +523,16 @@ const getAcademics = async (req, res) => {
 
         // fetching student details
         const student = await studentSchema.findById(marks.studentId);
+        if (student) {
+          // preparing new object
+          let marksObject = {
+            ...marks._doc,
+            ...student._doc,
+          };
 
-        // preparing new object
-        let marksObject = {
-          ...marks._doc,
-          ...student._doc,
-        };
-
-        // maintaining array
-        marksWithStudentDetails.push(marksObject);
+          // maintaining array
+          marksWithStudentDetails.push(marksObject);
+        }
       }
       const course = await courseSchema.findById(academics?.courseId);
       let academicDetail = {
