@@ -549,7 +549,7 @@ const getAcademics = async (req, res) => {
       res.status(404).send({
         success: true,
         message: 'Academics against these attributes not found.',
-        data: null
+        data: null,
       });
     }
   } catch (error) {
@@ -703,14 +703,16 @@ const getAttendances = async (req, res) => {
           // fetching student details
           const student = await studentSchema.findById(attendance.studentId);
 
-          // preparing new object
-          let attendanceObject = {
-            ...attendance._doc,
-            ...student._doc,
-          };
+          if (student) {
+            // preparing new object
+            let attendanceObject = {
+              ...attendance._doc,
+              ...student._doc,
+            };
 
-          // maintaining array
-          attendanceWithStudentDetails.push(attendanceObject);
+            // maintaining array
+            attendanceWithStudentDetails.push(attendanceObject);
+          }
         }
         const course = await courseSchema.findById(element.courseId);
         let attendanceDetail = {
