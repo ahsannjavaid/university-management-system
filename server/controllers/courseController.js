@@ -1,8 +1,8 @@
-const courseSchema = require("../models/courseModel");
-const instructorSchema = require("../models/instructorModel");
-const studentSchema = require("../models/studentModel");
-const offeredCourseSchema = require("../models/offeredCourseModel");
-const registeredCourseSchema = require("../models/registeredCourseModel");
+const courseSchema = require('../models/courseModel');
+const instructorSchema = require('../models/instructorModel');
+const studentSchema = require('../models/studentModel');
+const offeredCourseSchema = require('../models/offeredCourseModel');
+const registeredCourseSchema = require('../models/registeredCourseModel');
 
 const registerCourse = async (req, res) => {
   try {
@@ -13,27 +13,27 @@ const registerCourse = async (req, res) => {
       case !title:
         return res.status(400).send({
           success: false,
-          message: "Title is mandatory!",
+          message: 'Title is mandatory!',
         });
       case !fee:
         return res.status(400).send({
           success: false,
-          message: "Fee is mandatory!",
+          message: 'Fee is mandatory!',
         });
       case !type:
         return res.status(400).send({
           success: false,
-          message: "Type is mandatory!",
+          message: 'Type is mandatory!',
         });
       case !code:
         return res.status(400).send({
           success: false,
-          message: "Code is mandatory!",
+          message: 'Code is mandatory!',
         });
       case !adminId:
         return res.status(400).send({
           success: false,
-          message: "Admin ID is mandatory!",
+          message: 'Admin ID is mandatory!',
         });
       default:
         break;
@@ -44,7 +44,7 @@ const registerCourse = async (req, res) => {
     if (courseExists.length) {
       return res.status(400).send({
         success: false,
-        message: "This course already exists.",
+        message: 'This course already exists.',
       });
     }
 
@@ -62,20 +62,20 @@ const registerCourse = async (req, res) => {
     if (result) {
       res.status(200).send({
         success: true,
-        message: "Course registered successfully!",
+        message: 'Course registered successfully!',
         data: newCourse,
       });
     } else {
       res.status(500).send({
         success: false,
-        message: "Something went wrong while registering the course.",
+        message: 'Something went wrong while registering the course.',
         error,
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while registering the course.",
+      message: 'Something went wrong while registering the course.',
       error,
     });
   }
@@ -87,20 +87,20 @@ const getCourses = async (req, res) => {
     if (courses.length) {
       res.status(200).send({
         success: true,
-        message: "Courses fetched successfully!",
+        message: 'Courses fetched successfully!',
         count: courses.length,
         data: courses,
       });
     } else {
       res.status(204).send({
         success: true,
-        message: "No courses so far.",
+        message: 'No courses so far.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching the courses.",
+      message: 'Something went wrong while fetching the courses.',
       error,
     });
   }
@@ -113,19 +113,19 @@ const getSingleCourse = async (req, res) => {
     if (course) {
       res.status(200).send({
         success: true,
-        message: "Course fetched successfully!",
+        message: 'Course fetched successfully!',
         data: course,
       });
     } else {
       res.status(404).send({
         success: false,
-        message: "Course not found.",
+        message: 'Course not found.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching the course.",
+      message: 'Something went wrong while fetching the course.',
       error,
     });
   }
@@ -140,7 +140,7 @@ const editCourse = async (req, res) => {
     if (!course) {
       res.status(404).send({
         success: false,
-        message: "Course not found.",
+        message: 'Course not found.',
       });
     }
 
@@ -149,22 +149,22 @@ const editCourse = async (req, res) => {
       case !title:
         return res.status(400).send({
           success: false,
-          message: "Title cannot be empty!",
+          message: 'Title cannot be empty!',
         });
       case !fee:
         return res.status(400).send({
           success: false,
-          message: "Fee cannot be empty!",
+          message: 'Fee cannot be empty!',
         });
       case !type:
         return res.status(400).send({
           success: false,
-          message: "Type cannot be empty!",
+          message: 'Type cannot be empty!',
         });
       case !code:
         return res.status(400).send({
           success: false,
-          message: "Code cannot be empty!",
+          message: 'Code cannot be empty!',
         });
       default:
         break;
@@ -191,14 +191,14 @@ const editCourse = async (req, res) => {
     } else {
       res.status(500).send({
         success: false,
-        message: "Something went wrong while editing the course.",
+        message: 'Something went wrong while editing the course.',
         error,
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while editing the course.",
+      message: 'Something went wrong while editing the course.',
       error,
     });
   }
@@ -212,7 +212,7 @@ const deleteCourse = async (req, res) => {
     if (!course) {
       res.status(404).send({
         success: false,
-        message: "Course not found.",
+        message: 'Course not found.',
       });
     }
 
@@ -222,20 +222,20 @@ const deleteCourse = async (req, res) => {
     if (deletedCourse) {
       res.status(200).send({
         success: true,
-        message: "Course deleted successfully!",
+        message: 'Course deleted successfully!',
         data: deletedCourse,
       });
     } else {
       res.status(500).send({
         success: false,
-        message: "Something went wrong while deleting the course.",
+        message: 'Something went wrong while deleting the course.',
         error,
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while deleting the course.",
+      message: 'Something went wrong while deleting the course.',
       error,
     });
   }
@@ -250,12 +250,12 @@ const registerOfferedCourse = async (req, res) => {
       case !courseId:
         return res.status(400).send({
           success: false,
-          message: "Course ID is mandatory!",
+          message: 'Course ID is mandatory!',
         });
       case !instructorId:
         return res.status(400).send({
           success: false,
-          message: "Instructor ID is mandatory!",
+          message: 'Instructor ID is mandatory!',
         });
       default:
         break;
@@ -267,19 +267,19 @@ const registerOfferedCourse = async (req, res) => {
     if (!instructorExists && !courseExists) {
       return res.status(400).send({
         success: false,
-        message: "Neither this course nor this instructor exist.",
+        message: 'Neither this course nor this instructor exist.',
       });
     }
     if (!courseExists) {
       return res.status(400).send({
         success: false,
-        message: "This course does not exist.",
+        message: 'This course does not exist.',
       });
     }
     if (!instructorExists) {
       return res.status(400).send({
         success: false,
-        message: "This instructor does not exist.",
+        message: 'This instructor does not exist.',
       });
     }
 
@@ -291,7 +291,7 @@ const registerOfferedCourse = async (req, res) => {
     if (offeredCourseExists.length) {
       return res.status(400).send({
         success: false,
-        message: "This instructor is already taking this course.",
+        message: 'This instructor is already taking this course.',
       });
     }
 
@@ -305,20 +305,20 @@ const registerOfferedCourse = async (req, res) => {
     if (result) {
       res.status(200).send({
         success: true,
-        message: "Course offered successfully!",
+        message: 'Course offered successfully!',
         data: newOfferedCourse,
       });
     } else {
       res.status(500).send({
         success: false,
-        message: "Something went wrong while offering the course.",
+        message: 'Something went wrong while offering the course.',
         error,
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while offering the course.",
+      message: 'Something went wrong while offering the course.',
       error,
     });
   }
@@ -339,20 +339,20 @@ const getOfferedCoursesOfInstructor = async (req, res) => {
       }
       res.status(200).send({
         success: true,
-        message: "Offered courses of this instructor fetched successfully!",
+        message: 'Offered courses of this instructor fetched successfully!',
         count: registeredCourses.length,
         data: registeredCoursesDetail,
       });
     } else {
       res.status(204).send({
         success: true,
-        message: "No offered courses of this instructor so far.",
+        message: 'No offered courses of this instructor so far.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching the courses.",
+      message: 'Something went wrong while fetching the courses.',
       error,
     });
   }
@@ -367,17 +367,17 @@ const registerRegisteredCourse = async (req, res) => {
       case !courseId:
         return res.status(400).send({
           success: false,
-          message: "Course ID is mandatory!",
+          message: 'Course ID is mandatory!',
         });
       case !instructorId:
         return res.status(400).send({
           success: false,
-          message: "Instructor ID is mandatory!",
+          message: 'Instructor ID is mandatory!',
         });
       case !studentId:
         return res.status(400).send({
           success: false,
-          message: "Student ID is mandatory!",
+          message: 'Student ID is mandatory!',
         });
       default:
         break;
@@ -390,25 +390,25 @@ const registerRegisteredCourse = async (req, res) => {
     if (!instructorExists && !courseExists && !studentExists) {
       return res.status(400).send({
         success: false,
-        message: "This course, instructor and student do not exist.",
+        message: 'This course, instructor and student do not exist.',
       });
     }
     if (!courseExists) {
       return res.status(400).send({
         success: false,
-        message: "This course does not exist.",
+        message: 'This course does not exist.',
       });
     }
     if (!instructorExists) {
       return res.status(400).send({
         success: false,
-        message: "This instructor does not exist.",
+        message: 'This instructor does not exist.',
       });
     }
     if (!studentExists) {
       return res.status(400).send({
         success: false,
-        message: "This student does not exist.",
+        message: 'This student does not exist.',
       });
     }
 
@@ -420,7 +420,7 @@ const registerRegisteredCourse = async (req, res) => {
     if (registeredCourseExists.length) {
       return res.status(400).send({
         success: false,
-        message: "This student has already registered this course.",
+        message: 'This student has already registered this course.',
       });
     }
 
@@ -435,20 +435,20 @@ const registerRegisteredCourse = async (req, res) => {
     if (result) {
       res.status(200).send({
         success: true,
-        message: "Course registered successfully!",
+        message: 'Course registered successfully!',
         data: newRegisteredCourse,
       });
     } else {
       res.status(500).send({
         success: false,
-        message: "Something went wrong while offering the course.",
+        message: 'Something went wrong while offering the course.',
         error,
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while offering the course.",
+      message: 'Something went wrong while offering the course.',
       error,
     });
   }
@@ -465,25 +465,30 @@ const getRegisteredCoursesOfStudent = async (req, res) => {
       for (let i = 0; i < registeredCourses.length; i++) {
         const element = registeredCourses[i];
         const course = await courseSchema.findById(element.courseId);
-        const instructor = await instructorSchema.findById(element.instructorId);
-        registeredCoursesDetail.push({...course._doc, instructorName: instructor.fname + " " + instructor.lname});
+        const instructor = await instructorSchema.findById(
+          element.instructorId
+        );
+        registeredCoursesDetail.push({
+          ...course._doc,
+          instructorName: instructor.fname + ' ' + instructor.lname,
+        });
       }
       res.status(200).send({
         success: true,
-        message: "Registered courses of this student fetched successfully!",
+        message: 'Registered courses of this student fetched successfully!',
         count: registeredCourses.length,
         data: registeredCoursesDetail,
       });
     } else {
       res.status(204).send({
         success: true,
-        message: "No registered courses of this student so far.",
+        message: 'No registered courses of this student so far.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching the courses.",
+      message: 'Something went wrong while fetching the courses.',
       error,
     });
   }
@@ -503,25 +508,25 @@ const getOfferedCourses = async (req, res) => {
         registeredCoursesDetail.push({
           ...course._doc,
           instructorId: instructor._id,
-          instructorName: instructor.fname + " " + instructor.lname,
+          instructorName: instructor.fname + ' ' + instructor.lname,
         });
       }
       res.status(200).send({
         success: true,
-        message: "Offered courses fetched successfully!",
+        message: 'Offered courses fetched successfully!',
         count: registeredCourses.length,
         data: registeredCoursesDetail,
       });
     } else {
       res.status(204).send({
         success: true,
-        message: "No offered courses so far.",
+        message: 'No offered courses so far.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching the courses.",
+      message: 'Something went wrong while fetching the courses.',
       error,
     });
   }
@@ -539,28 +544,31 @@ const getRegisteredStudentsOfInstructor = async (req, res) => {
         const element = registeredStudents[i];
         const student = await studentSchema.findById(element.studentId);
         const course = await courseSchema.findById(element.courseId);
-        registeredStudentsDetail.push({
-          ...student._doc,
-          courseTitle: course.title,
-          courseId: course._id,
-        });
+        console.log(student);
+        console.log(course);
+        if (student && course)
+          registeredStudentsDetail.push({
+            ...(student._doc),
+            courseTitle: course.title,
+            courseId: course._id,
+          });
       }
       res.status(200).send({
         success: true,
-        message: "Registered students of this instructor fetched successfully!",
+        message: 'Registered students of this instructor fetched successfully!',
         count: registeredStudents.length,
         data: registeredStudentsDetail,
       });
     } else {
       res.status(204).send({
         success: true,
-        message: "No registered students of this instructor so far.",
+        message: 'No registered students of this instructor so far.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching the students.",
+      message: 'Something went wrong while fetching the students.',
       error,
     });
   }
