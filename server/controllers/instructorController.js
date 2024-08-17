@@ -3,6 +3,7 @@ const studentSchema = require('../models/studentModel');
 const courseSchema = require('../models/courseModel');
 const academicSchema = require('../models/academicModel');
 const attendanceSchema = require('../models/attendanceModel');
+const registeredCourseSchema = require('../models/registeredCourseModel');
 
 const registerInstructor = async (req, res) => {
   try {
@@ -516,8 +517,24 @@ const getAcademics = async (req, res) => {
       examType,
       activityNumber,
     });
+
     if (academics) {
       let marksWithStudentDetails = [];
+      const registeredStudents = await registeredCourseSchema.find({
+        instructorId,
+      });
+
+      // adding marks for new comers students if any
+      for (let i = 0; i < registeredStudents.length; i++) {
+        const element = registeredStudents[i];
+        if (!academics?.marks?.some((x) => x.studentId === element.studentId))
+          academics?.marks?.push({
+            obtainedMarks: 0,
+            studentId: element.studentId,
+            _id: element.studentId,
+          });
+      }
+
       for (let j = 0; j < academics?.marks.length; j++) {
         const marks = academics?.marks[j];
 
@@ -694,9 +711,26 @@ const getAttendances = async (req, res) => {
 
     if (attendances.length) {
       let attendanceDetails = [];
+
+      const registeredStudents = await registeredCourseSchema.find({
+        instructorId: id,
+      });
+
       for (let i = 0; i < attendances.length; i++) {
         const element = attendances[i];
         let attendanceWithStudentDetails = [];
+
+        // adding attendance for new comers students if any
+        for (let j = 0; j < registeredStudents.length; j++) {
+          const e = registeredStudents[j];
+          if (!element?.attendance?.some((x) => x.studentId === e.studentId))
+            element?.attendance?.push({
+              studentId: e.studentId,
+              status: 'N/A',
+              _id: e.studentId,
+            });
+        }
+
         for (let j = 0; j < element.attendance.length; j++) {
           const attendance = element.attendance[j];
 
