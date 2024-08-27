@@ -29,7 +29,7 @@ export default function PostAttendance() {
       try {
         let res;
         res = await fetchResponse(
-          instructorEndpoints.getAttendances(instructorId),
+          instructorEndpoints.getAttendances(instructorId, temporarySelection.course),
           0,
           null
         );

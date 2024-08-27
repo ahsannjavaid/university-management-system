@@ -16,6 +16,6 @@ router.get("/getAcademics", getAcademics);
 
 router.post("/postAttendance", postAttendance);
 router.put("/editAttendance/:id", editAttendance);
-router.get("/getAttendances/:id", getAttendances);
+router.get("/getAttendances/:id/:courseId", getAttendances);
 
 module.exports = router;

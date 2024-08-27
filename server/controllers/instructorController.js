@@ -522,6 +522,7 @@ const getAcademics = async (req, res) => {
       let marksWithStudentDetails = [];
       const registeredStudents = await registeredCourseSchema.find({
         instructorId,
+        courseId
       });
 
       // adding marks for new comers students if any
@@ -707,13 +708,15 @@ const editAttendance = async (req, res) => {
 const getAttendances = async (req, res) => {
   try {
     const id = req.params.id;
-    const attendances = await attendanceSchema.find({ instructorId: id });
+    const courseId = req.params.courseId;
+    const attendances = await attendanceSchema.find({ instructorId: id, courseId });
 
     if (attendances.length) {
       let attendanceDetails = [];
 
       const registeredStudents = await registeredCourseSchema.find({
         instructorId: id,
+        courseId
       });
 
       for (let i = 0; i < attendances.length; i++) {
