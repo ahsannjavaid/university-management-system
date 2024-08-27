@@ -29,6 +29,7 @@ export default function MarkMarks({
         marks: data?.map((marks) => ({
           studentId: marks._id,
           obtainedMarks: parseFloat(marks.obtainedMarks),
+          isPublic: marks.isPublic,
         })),
         instructorId,
         courseId,

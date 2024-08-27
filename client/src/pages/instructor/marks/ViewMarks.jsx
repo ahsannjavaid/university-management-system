@@ -75,6 +75,7 @@ export default function ViewMarks() {
           marks: resData?.marks?.map((m) => ({
             ...m,
             name: m.fname + ' ' + m.lname,
+            isPublic: m.isPublic === undefined ? true : m.isPublic
           })),
         } : null);
         setIsLoading(false);

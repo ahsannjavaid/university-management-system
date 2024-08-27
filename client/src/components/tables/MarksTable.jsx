@@ -10,6 +10,21 @@ export default function MarksTable({
   dataAttributes,
   totalMarks,
 }) {
+  function handleChangeIsPublic(item) {
+    setData((prevData) => {
+      const updatedData = prevData.map((x) => {
+        if (x.studentId === item.studentId) {
+          return {
+            ...x,
+            isPublic: !item.isPublic,
+          };
+        }
+        return x;
+      });
+      return updatedData;
+    });
+  }
+
   return (
     <TableLayout>
       <table className={'table table-sm ' + styles}>
@@ -27,7 +42,15 @@ export default function MarksTable({
                 <tr key={index}>
                   {dataAttributes.map((attribute, index) => {
                     return (
-                      <td key={index}>
+                      <td
+                        onClick={
+                          attribute === 'name'
+                            ? () => handleChangeIsPublic(item)
+                            : null
+                        }
+                        className={`cursor-pointer ${attribute === 'name' && !item?.isPublic && 'text-decoration-line-through'}`}
+                        key={index}
+                      >
                         {attribute === 'obtainedMarks' ? (
                           <InputField
                             type={'number'}

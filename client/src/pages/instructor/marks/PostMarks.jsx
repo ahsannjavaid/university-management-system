@@ -52,6 +52,7 @@ export default function PostMarks() {
             studentId: student._id,
             name: student.fname + ' ' + student.lname,
             obtainedMarks: 0,
+            isPublic: true,
           }))
         );
         setIsLoading(false);

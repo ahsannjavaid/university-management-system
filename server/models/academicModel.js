@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const academicSchema = new mongoose.Schema(
   {
@@ -24,6 +24,10 @@ const academicSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
+        isPublic: {
+          type: Boolean,
+          required: true,
+        },
       },
     ],
     activityNumber: {
@@ -41,4 +45,4 @@ const academicSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("academics", academicSchema);
+module.exports = mongoose.model('academics', academicSchema);
