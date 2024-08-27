@@ -26,6 +26,7 @@ export default function PostAttendance() {
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true);
       try {
         let res;
         res = await fetchResponse(
@@ -78,26 +79,28 @@ export default function PostAttendance() {
             status: 'N/A',
           }))
         );
-        setIsLoading(false);
       } catch (error) {
         console.log(error);
         setIsLoading(false);
       }
     }
     fetchStudents();
+    // eslint-disable-next-line
+  }, [instructorId, temporarySelection.course]);
+
+  useEffect(() => {
     if (temporarySelection.date && temporarySelection.course) {
-      let duplicateObject = attendances.filter(
+      let duplicateObject = attendances.find(
         (attendance) =>
           moment(attendance?.date).format('YYYY-MM-DD') ===
             temporarySelection.date &&
           attendance?.course._id === temporarySelection.course
-      )[0];
+      );
       setSelectedAttendance(duplicateObject);
     } else {
       setSelectedAttendance(null);
     }
-    // eslint-disable-next-line
-  }, [instructorId, selectedAttendance, temporarySelection]);
+  }, [attendances, temporarySelection]);
 
   return (
     <InstructorLayout isLoading={isLoading}>
