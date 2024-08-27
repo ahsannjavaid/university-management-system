@@ -26,6 +26,7 @@ export default function MarkAttendance({ data, date, courseId, instructorId }) {
         attendance: attendanceData?.map((attendance) => ({
           studentId: attendance._id,
           status: attendance.status,
+          isPublic: attendance.isPublic,
         })),
         instructorId,
         courseId,

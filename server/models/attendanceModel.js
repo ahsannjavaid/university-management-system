@@ -17,6 +17,10 @@ const attendanceSchema = new mongoose.Schema(
           required: true,
           maxlength: 3,
         },
+        isPublic: {
+          type: Boolean,
+          required: true,
+        },
       },
     ],
     instructorId: {

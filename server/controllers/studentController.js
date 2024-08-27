@@ -1,8 +1,8 @@
-const studentSchema = require("../models/studentModel");
-const instructorSchema = require("../models/instructorModel");
-const courseSchema = require("../models/courseModel");
-const academicSchema = require("../models/academicModel");
-const attendanceSchema = require("../models/attendanceModel");
+const studentSchema = require('../models/studentModel');
+const instructorSchema = require('../models/instructorModel');
+const courseSchema = require('../models/courseModel');
+const academicSchema = require('../models/academicModel');
+const attendanceSchema = require('../models/attendanceModel');
 
 const registerStudent = async (req, res) => {
   try {
@@ -13,22 +13,22 @@ const registerStudent = async (req, res) => {
       case !fname:
         return res.status(400).send({
           success: false,
-          message: "First name is mandatory!",
+          message: 'First name is mandatory!',
         });
       case !lname:
         return res.status(400).send({
           success: false,
-          message: "Last name is mandatory!",
+          message: 'Last name is mandatory!',
         });
       case !email:
         return res.status(400).send({
           success: false,
-          message: "Email is mandatory!",
+          message: 'Email is mandatory!',
         });
       case !password:
         return res.status(400).send({
           success: false,
-          message: "Password is mandatory!",
+          message: 'Password is mandatory!',
         });
       default:
         break;
@@ -40,7 +40,7 @@ const registerStudent = async (req, res) => {
       return res.status(400).send({
         success: false,
         message: `We already have a student named ${
-          studentExists[0].fname + " " + studentExists[0].lname
+          studentExists[0].fname + ' ' + studentExists[0].lname
         } against this email.`,
       });
     }
@@ -69,20 +69,20 @@ const registerStudent = async (req, res) => {
     if (result) {
       res.status(200).send({
         success: true,
-        message: "Student registered successfully!",
+        message: 'Student registered successfully!',
         data: newStudent,
       });
     } else {
       res.status(500).send({
         success: false,
-        message: "Something went wrong while registering the student.",
+        message: 'Something went wrong while registering the student.',
         error,
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while registering the student.",
+      message: 'Something went wrong while registering the student.',
       error,
     });
   }
@@ -94,20 +94,20 @@ const getStudents = async (req, res) => {
     if (students.length) {
       res.status(200).send({
         success: true,
-        message: "Students fetched successfully!",
+        message: 'Students fetched successfully!',
         count: students.length,
         data: students,
       });
     } else {
       res.status(204).send({
         success: true,
-        message: "No students so far.",
+        message: 'No students so far.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching the students.",
+      message: 'Something went wrong while fetching the students.',
       error,
     });
   }
@@ -120,19 +120,19 @@ const getSingleStudent = async (req, res) => {
     if (student) {
       res.status(200).send({
         success: true,
-        message: "Student fetched successfully!",
+        message: 'Student fetched successfully!',
         data: student,
       });
     } else {
       res.status(404).send({
         success: false,
-        message: "Student not found.",
+        message: 'Student not found.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching the student.",
+      message: 'Something went wrong while fetching the student.',
       error,
     });
   }
@@ -147,37 +147,40 @@ const loginStudent = async (req, res) => {
       case !email && !rollNumber:
         return res.status(400).send({
           success: false,
-          message: "Please provide Email or Roll number.",
+          message: 'Please provide Email or Roll number.',
         });
       case !password:
         return res.status(400).send({
           success: false,
-          message: "Password is mandatory!",
+          message: 'Password is mandatory!',
         });
       default:
         break;
     }
 
     const student = await studentSchema.findOne({
-      $or: [{ email, password }, { rollNumber, password }],
+      $or: [
+        { email, password },
+        { rollNumber, password },
+      ],
     });
-    
+
     if (student) {
       res.status(200).send({
         success: true,
-        message: "Login successfully!",
+        message: 'Login successfully!',
         data: student,
       });
     } else {
       res.status(404).send({
         success: false,
-        message: "Wrong credentials.",
+        message: 'Wrong credentials.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while loging in the student.",
+      message: 'Something went wrong while loging in the student.',
       error,
     });
   }
@@ -192,7 +195,7 @@ const editStudent = async (req, res) => {
     if (!student) {
       res.status(404).send({
         success: false,
-        message: "Student not found.",
+        message: 'Student not found.',
       });
     }
 
@@ -201,34 +204,38 @@ const editStudent = async (req, res) => {
       case !fname:
         return res.status(400).send({
           success: false,
-          message: "First name cannot be empty!",
+          message: 'First name cannot be empty!',
         });
       case !lname:
         return res.status(400).send({
           success: false,
-          message: "Last name cannot be empty!",
+          message: 'Last name cannot be empty!',
         });
       case !email:
         return res.status(400).send({
           success: false,
-          message: "Email cannot be empty!",
+          message: 'Email cannot be empty!',
         });
       case !password:
         return res.status(400).send({
           success: false,
-          message: "Password cannot be empty!",
+          message: 'Password cannot be empty!',
         });
       default:
         break;
     }
 
     // editing
-    const editedStudent = await studentSchema.findByIdAndUpdate(id, {
-      fname,
-      lname,
-      email,
-      password,
-    }, { new: true });
+    const editedStudent = await studentSchema.findByIdAndUpdate(
+      id,
+      {
+        fname,
+        lname,
+        email,
+        password,
+      },
+      { new: true }
+    );
     if (editedStudent) {
       res.status(200).send({
         success: true,
@@ -238,14 +245,14 @@ const editStudent = async (req, res) => {
     } else {
       res.status(500).send({
         success: false,
-        message: "Something went wrong while editing the student.",
+        message: 'Something went wrong while editing the student.',
         error,
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while editing the student.",
+      message: 'Something went wrong while editing the student.',
       error,
     });
   }
@@ -270,34 +277,38 @@ const getAcademics = async (req, res) => {
         const course = await courseSchema.findById(element.courseId);
 
         // fetching the required records only
-        const requiredStudentMarks = element.marks.filter(
+        const requiredStudentMarks = element.marks.find(
           (record) => record.studentId === id
         );
 
-        academicDetails.push({
-          ...element._doc,
-          instructorName: instructor.fname + " " + instructor.lname,
-          courseTitle: course.title,
-          marks: requiredStudentMarks[0].obtainedMarks,
-        });
+        if (
+          requiredStudentMarks?.isPublic ||
+          requiredStudentMarks?.isPublic === undefined
+        )
+          academicDetails.push({
+            ...element._doc,
+            instructorName: instructor.fname + ' ' + instructor.lname,
+            courseTitle: course.title,
+            marks: requiredStudentMarks.obtainedMarks,
+          });
       }
 
       res.status(200).send({
         success: true,
-        message: "Academics fetched successfully!",
+        message: 'Academics fetched successfully!',
         count: academics.length,
         data: academicDetails,
       });
     } else {
       res.status(404).send({
         success: false,
-        message: "Academics against this student not found.",
+        message: 'Academics against this student not found.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching academics.",
+      message: 'Something went wrong while fetching academics.',
       error,
     });
   }
@@ -322,34 +333,38 @@ const getAttendances = async (req, res) => {
         const course = await courseSchema.findById(element.courseId);
 
         // fetching the required records only
-        const requiredStudentMarks = element.attendance.filter(
+        const requiredStudentAttendance = element.attendance.find(
           (record) => record.studentId === id
         );
 
-        attendanceDetails.push({
-          ...element._doc,
-          instructorName: instructor.fname + " " + instructor.lname,
-          courseTitle: course.title,
-          attendance: requiredStudentMarks[0].status,
-        });
+        if (
+          requiredStudentAttendance?.isPublic === undefined ||
+          requiredStudentAttendance?.isPublic
+        )
+          attendanceDetails.push({
+            ...element._doc,
+            instructorName: instructor.fname + ' ' + instructor.lname,
+            courseTitle: course.title,
+            attendance: requiredStudentAttendance.status,
+          });
       }
 
       res.status(200).send({
         success: true,
-        message: "Attendances fetched successfully!",
+        message: 'Attendances fetched successfully!',
         count: attendances.length,
         data: attendanceDetails,
       });
     } else {
       res.status(404).send({
         success: false,
-        message: "Attendances against this student not found.",
+        message: 'Attendances against this student not found.',
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while fetching attendances.",
+      message: 'Something went wrong while fetching attendances.',
       error,
     });
   }
@@ -363,7 +378,7 @@ const deleteStudent = async (req, res) => {
     if (!student) {
       res.status(404).send({
         success: false,
-        message: "Student not found.",
+        message: 'Student not found.',
       });
     }
 
@@ -373,20 +388,20 @@ const deleteStudent = async (req, res) => {
     if (deletedStudent) {
       res.status(200).send({
         success: true,
-        message: "Student deleted successfully!",
+        message: 'Student deleted successfully!',
         data: deletedStudent,
       });
     } else {
       res.status(500).send({
         success: false,
-        message: "Something went wrong while deleting the student.",
+        message: 'Something went wrong while deleting the student.',
         error,
       });
     }
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: "Something went wrong while deleting the student.",
+      message: 'Something went wrong while deleting the student.',
       error,
     });
   }

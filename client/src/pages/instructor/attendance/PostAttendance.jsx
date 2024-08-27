@@ -77,6 +77,7 @@ export default function PostAttendance() {
             studentId: student._id,
             name: student.fname + ' ' + student.lname,
             status: 'N/A',
+            isPublic: true,
           }))
         );
       } catch (error) {
@@ -150,6 +151,7 @@ export default function PostAttendance() {
           data={selectedAttendance?.attendance?.map((attendance) => ({
             ...attendance,
             name: attendance.fname + ' ' + attendance.lname,
+            isPublic: attendance.isPublic === undefined ? true : attendance.isPublic,
           }))}
           attendanceWhole={selectedAttendance}
         />

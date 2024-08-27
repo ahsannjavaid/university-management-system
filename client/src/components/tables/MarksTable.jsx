@@ -48,7 +48,7 @@ export default function MarksTable({
                             ? () => handleChangeIsPublic(item)
                             : null
                         }
-                        className={`cursor-pointer ${attribute === 'name' && !item?.isPublic && 'text-decoration-line-through'}`}
+                        className={`${attribute === 'name' && !item?.isPublic && 'text-decoration-line-through'} ${attribute === 'name' && 'cursor-pointer'}`}
                         key={index}
                       >
                         {attribute === 'obtainedMarks' ? (

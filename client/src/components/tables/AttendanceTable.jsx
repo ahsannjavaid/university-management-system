@@ -9,6 +9,21 @@ export default function AttendanceTable({
   setData,
   dataAttributes,
 }) {
+  function handleChangeIsPublic(item) {
+    setData((prevData) => {
+      const updatedData = prevData.map((x) => {
+        if (x.studentId === item.studentId) {
+          return {
+            ...x,
+            isPublic: !item.isPublic,
+          };
+        }
+        return x;
+      });
+      return updatedData;
+    });
+  }
+  
   return (
     <TableLayout>
       <table className={'table table-sm ' + styles}>
@@ -26,7 +41,14 @@ export default function AttendanceTable({
                 <tr key={index}>
                   {dataAttributes.map((attribute, index) => {
                     return (
-                      <td key={index}>
+                      <td
+                      onClick={
+                        attribute === 'name'
+                          ? () => handleChangeIsPublic(item)
+                          : null
+                      }
+                      className={`${attribute === 'name' && !item?.isPublic && 'text-decoration-line-through'} ${attribute === 'name' && 'cursor-pointer'}`}
+                      key={index}>
                         {attribute === 'status' ? (
                           <SelectField
                             options={[
