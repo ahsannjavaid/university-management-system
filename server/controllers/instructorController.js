@@ -707,15 +707,14 @@ const editAttendance = async (req, res) => {
 
 const getAttendances = async (req, res) => {
   try {
-    const id = req.params.id;
-    const courseId = req.params.courseId;
-    const attendances = await attendanceSchema.find({ instructorId: id, courseId });
-
+    const { instructorId, courseId, date } = req.query;
+    const attendances = await attendanceSchema.find({ instructorId, courseId, date });
+    
     if (attendances.length) {
       let attendanceDetails = [];
 
       const registeredStudents = await registeredCourseSchema.find({
-        instructorId: id,
+        instructorId,
         courseId
       });
 
@@ -767,8 +766,9 @@ const getAttendances = async (req, res) => {
       });
     } else {
       res.status(404).send({
-        success: false,
+        success: true,
         message: 'Attendances against this instructor not found.',
+        data: []
       });
     }
   } catch (error) {

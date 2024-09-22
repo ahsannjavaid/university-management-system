@@ -9,7 +9,7 @@ export const instructorEndpoints = {
 
   getInstructors: () => `${BASE_URL}${title}getAll`,
 
-  getAttendances: (id, courseId) => `${BASE_URL}${title}getAttendances/${id}/${courseId}`,
+  getAttendances: (id, courseId, date) => `${BASE_URL}${title}getAttendances?instructorId=${id}&courseId=${courseId}&date=${date}`,
 
   postAttendance: () => `${BASE_URL}${title}postAttendance`,
 

@@ -30,25 +30,24 @@ export default function PostAttendance() {
       try {
         let res;
         res = await fetchResponse(
-          instructorEndpoints.getAttendances(instructorId, temporarySelection.course),
+          instructorEndpoints.getAttendances(instructorId, temporarySelection.course, temporarySelection.date),
           0,
           null
         );
         const resData = res.data;
         if (!res.success) {
           toast.error(res.message, toastErrorObject);
-          setIsLoading(false);
           return;
         }
         console.log('Log data', resData);
         setAttendances(resData);
-        setIsLoading(false);
       } catch (error) {
         console.log(error);
+      } finally {
         setIsLoading(false);
       }
     }
-    fetchData();
+    if (temporarySelection.date && temporarySelection.course ) fetchData();
     async function fetchStudents() {
       try {
         let res;
@@ -60,7 +59,6 @@ export default function PostAttendance() {
         const resData = res.data;
         if (!res.success) {
           toast.error(res.message, toastErrorObject);
-          setIsLoading(false);
           return;
         }
         console.log('Log data', resData);
@@ -82,12 +80,12 @@ export default function PostAttendance() {
         );
       } catch (error) {
         console.log(error);
+      } finally {
         setIsLoading(false);
       }
     }
     fetchStudents();
-    // eslint-disable-next-line
-  }, [instructorId, temporarySelection.course]);
+  }, [instructorId, temporarySelection.course, temporarySelection.date]);
 
   useEffect(() => {
     if (temporarySelection.date && temporarySelection.course) {
