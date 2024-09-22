@@ -544,8 +544,6 @@ const getRegisteredStudentsOfInstructor = async (req, res) => {
         const element = registeredStudents[i];
         const student = await studentSchema.findById(element.studentId);
         const course = await courseSchema.findById(element.courseId);
-        console.log(student);
-        console.log(course);
         if (student && course)
           registeredStudentsDetail.push({
             ...(student._doc),

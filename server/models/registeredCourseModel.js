@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const registeredCourseSchema = new mongoose.Schema(
   {
     courseId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: "courses",
       required: true,
     },
     instructorId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: "instructors",
       required: true,
     },
