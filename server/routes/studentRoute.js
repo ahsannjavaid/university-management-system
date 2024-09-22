@@ -21,7 +21,7 @@ router.put("/edit/:id", editStudent);
 router.delete("/delete/:id", deleteStudent);
 
 router.get("/getAcademics", getAcademics);
-router.get("/getAttendances/:id", getAttendances);
+router.get("/getAttendances", getAttendances);
 router.get("/getCourseAndExamTypeNames/:id", getCourseAndExamTypeNames);
 
 module.exports = router;

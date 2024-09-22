@@ -367,25 +367,24 @@ const getCourseAndExamTypeNames = async (req, res) => {
 
 const getAttendances = async (req, res) => {
   try {
-    const id = req.params.id;
+    const { studentId, courseId } = req.query;
 
-    const attendances = await attendanceSchema.find({
-      attendance: { $elemMatch: { studentId: id } },
-    });
+    const attendances = await attendanceSchema
+      .find({
+        attendance: { $elemMatch: { studentId } },
+        courseId,
+      })
+      .select("date attendance _id");
 
     if (attendances.length) {
       let attendanceDetails = [];
 
       for (let i = 0; i < attendances.length; i++) {
         const element = attendances[i];
-        const instructor = await instructorSchema.findById(
-          element.instructorId
-        );
-        const course = await courseSchema.findById(element.courseId);
 
         // fetching the required records only
         const requiredStudentAttendance = element.attendance.find(
-          (record) => record.studentId === id
+          (record) => record.studentId === studentId
         );
 
         if (
@@ -394,18 +393,22 @@ const getAttendances = async (req, res) => {
         )
           attendanceDetails.push({
             ...element._doc,
-            instructorName: instructor.fname + " " + instructor.lname,
-            courseTitle: course.title,
             attendance: requiredStudentAttendance.status,
           });
       }
-
-      res.status(200).send({
-        success: true,
-        message: "Attendances fetched successfully!",
-        count: attendances.length,
-        data: attendanceDetails,
-      });
+      if (attendanceDetails.length) {
+        res.status(200).send({
+          success: true,
+          message: "Attendances fetched successfully!",
+          count: attendanceDetails.length,
+          data: attendanceDetails,
+        });
+      } else {
+        res.status(404).send({
+          success: false,
+          message: "Attendances against this student not found.",
+        });
+      }
     } else {
       res.status(404).send({
         success: false,

@@ -13,7 +13,7 @@ export const studentEndpoints = {
 
   getAcademics: (id, courseId, examType) => `${BASE_URL}${title}getAcademics?studentId=${id}&courseId=${courseId}&examType=${examType}`,
 
-  getAttendances: (id) => `${BASE_URL}${title}getAttendances/${id}`,
+  getAttendances: (id, courseId) => `${BASE_URL}${title}getAttendances?studentId=${id}&courseId=${courseId}`,
 
   getCourseAndExamTypeNames: (id) => `${BASE_URL}${title}getCourseAndExamTypeNames/${id}`,
 
