@@ -8,6 +8,7 @@ const {
   editStudent,
   deleteStudent,
   loginStudent,
+  getCourseAndExamTypeNames,
 } = require("../controllers/studentController");
 
 const router = express.Router();
@@ -19,7 +20,8 @@ router.post("/login", loginStudent);
 router.put("/edit/:id", editStudent);
 router.delete("/delete/:id", deleteStudent);
 
-router.get("/getAcademics/:id", getAcademics);
+router.get("/getAcademics", getAcademics);
 router.get("/getAttendances/:id", getAttendances);
+router.get("/getCourseAndExamTypeNames/:id", getCourseAndExamTypeNames);
 
 module.exports = router;

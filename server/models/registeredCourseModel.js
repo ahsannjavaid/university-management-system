@@ -3,16 +3,18 @@ const mongoose = require("mongoose");
 const registeredCourseSchema = new mongoose.Schema(
   {
     courseId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "courses",
       required: true,
     },
     instructorId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "instructors",
       required: true,
     },
     studentId: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }

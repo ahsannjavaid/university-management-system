@@ -11,9 +11,11 @@ export const studentEndpoints = {
 
   getSingleStudent: (id) => `${BASE_URL}${title}get/${id}`,
 
-  getAcademics: (id) => `${BASE_URL}${title}getAcademics/${id}`,
+  getAcademics: (id, courseId, examType) => `${BASE_URL}${title}getAcademics?studentId=${id}&courseId=${courseId}&examType=${examType}`,
 
   getAttendances: (id) => `${BASE_URL}${title}getAttendances/${id}`,
+
+  getCourseAndExamTypeNames: (id) => `${BASE_URL}${title}getCourseAndExamTypeNames/${id}`,
 
   editStudent: (id) => `${BASE_URL}${title}edit/${id}`,
 
