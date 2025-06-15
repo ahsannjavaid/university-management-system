@@ -9,8 +9,8 @@ University Management System is a sort of LMS where Admin can register instructo
 1. Admin is a secret entity. Admin can register instructors and courses of the university.
 2. Instructor can then offer course(s) that are being registered by the university (Admin).
 3. Students can register the courses offered by the instructors.
-3. Instructor can post marks of different activities done in class against each student's record.
-4. Then students can signup/login to their accounts through the Student ID / Amail Address.
+3. Instructor can post attendances and marks of different activities done in class against each student's record.
+4. Then students can signup/login to their accounts through the Student ID or Email Address.
 5. Students can check their received marks in different subjects enrolled by their instructors.
 
 
