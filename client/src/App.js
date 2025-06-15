@@ -1,7 +1,7 @@
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import React from "react";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Instructor from "./pages/instructor/Instructor";
 import Student from "./pages/student/Student";
@@ -38,7 +38,7 @@ export default function App() {
     <>
       <ToastContainer />
       <Activator />
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
 
@@ -131,7 +131,7 @@ export default function App() {
           
           <Route path="*" element={<ErrorPage />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </>
   );
 }
