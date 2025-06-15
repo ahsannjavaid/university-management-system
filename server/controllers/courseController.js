@@ -505,11 +505,13 @@ const getOfferedCourses = async (req, res) => {
         const instructor = await instructorSchema.findById(
           element.instructorId
         );
-        registeredCoursesDetail.push({
-          ...course._doc,
-          instructorId: instructor._id,
-          instructorName: instructor.fname + ' ' + instructor.lname,
-        });
+        if (course && instructor) {
+          registeredCoursesDetail.push({
+            ...course._doc,
+            instructorId: instructor._id,
+            instructorName: instructor.fname + ' ' + instructor.lname,
+          });
+        }
       }
       res.status(200).send({
         success: true,
@@ -526,7 +528,7 @@ const getOfferedCourses = async (req, res) => {
   } catch (error) {
     res.status(500).send({
       success: false,
-      message: 'Something went wrong while fetching the courses.',
+      message: 'Something went wrong while fetching the courses!.',
       error,
     });
   }
