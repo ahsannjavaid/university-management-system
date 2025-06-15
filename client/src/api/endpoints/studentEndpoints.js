@@ -1,23 +1,23 @@
-import { BASE_URL } from "../config";
+// import { BASE_URL } from "../config";
 
 const title = "student/";
 
 export const studentEndpoints = {
-  loginStudent: () => `${BASE_URL}${title}login`,
+  loginStudent: () => `${process.env.REACT_APP_API_URL}${title}login`,
 
-  registerStudent: () => `${BASE_URL}${title}register`,
+  registerStudent: () => `${process.env.REACT_APP_API_URL}${title}register`,
 
-  getStudents: () => `${BASE_URL}${title}getAll`,
+  getStudents: () => `${process.env.REACT_APP_API_URL}${title}getAll`,
 
-  getSingleStudent: (id) => `${BASE_URL}${title}get/${id}`,
+  getSingleStudent: (id) => `${process.env.REACT_APP_API_URL}${title}get/${id}`,
 
-  getAcademics: (id, courseId, examType) => `${BASE_URL}${title}getAcademics?studentId=${id}&courseId=${courseId}&examType=${examType}`,
+  getAcademics: (id, courseId, examType) => `${process.env.REACT_APP_API_URL}${title}getAcademics?studentId=${id}&courseId=${courseId}&examType=${examType}`,
 
-  getAttendances: (id, courseId) => `${BASE_URL}${title}getAttendances?studentId=${id}&courseId=${courseId}`,
+  getAttendances: (id, courseId) => `${process.env.REACT_APP_API_URL}${title}getAttendances?studentId=${id}&courseId=${courseId}`,
 
-  getCourseAndExamTypeNames: (id) => `${BASE_URL}${title}getCourseAndExamTypeNames/${id}`,
+  getCourseAndExamTypeNames: (id) => `${process.env.REACT_APP_API_URL}${title}getCourseAndExamTypeNames/${id}`,
 
-  editStudent: (id) => `${BASE_URL}${title}edit/${id}`,
+  editStudent: (id) => `${process.env.REACT_APP_API_URL}${title}edit/${id}`,
 
-  deleteSingleStudent: (id) => `${BASE_URL}${title}delete/${id}`,
+  deleteSingleStudent: (id) => `${process.env.REACT_APP_API_URL}${title}delete/${id}`,
 };

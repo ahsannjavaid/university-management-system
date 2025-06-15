@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { toastErrorObject } from './utility/toasts';
 import { fetchResponse } from './api/service';
-import { BASE_URL } from './api/config';
+// import { BASE_URL } from './api/config';
 
 export default function Activator() {
   useEffect(() => {
     async function activator() {
       try {
-        const resData = await fetchResponse(BASE_URL, 0, null);
+        const resData = await fetchResponse(process.env.REACT_APP_API_URL, 0, null);
         console.log('Log data (Server Status)', resData);
         if (!resData) toast.error('Check your internet connection.', toastErrorObject);
       } catch (error) {
